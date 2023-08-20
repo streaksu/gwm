@@ -71,10 +71,11 @@ if ! test "x$NATIVE_PKGCONFIG_FOUND" = "xyes"; then
 fi
 AC_SUBST([NATIVE_PKGCONFIG])
 
+CPPFLAGS="$CPPFLAGS $($NATIVE_PKGCONFIG --cflags-only-I libpng freetype2)"
 CXXFLAGS="$CXXFLAGS $($NATIVE_PKGCONFIG --cflags libpng freetype2)"
 LIBS="$LIBS $($NATIVE_PKGCONFIG --libs libpng freetype2)"
 
-AC_CHECK_HEADERS([stdio.h unistd.h fcntl.h stdlib.h sys/ioctl.h],
+AC_CHECK_HEADERS([stdio.h unistd.h fcntl.h stdlib.h sys/ioctl.h ft2build.h],
     [], [AC_MSG_ERROR([required header not found])])
 
 AC_PREFIX_DEFAULT([/usr/local])
